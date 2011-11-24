@@ -1,0 +1,21 @@
+name: ChestTrap
+main: tk.tyzoid.plugins.ChestTrap.ChestTrap
+version: 1.0.0
+author: Tyzoid
+
+permissions:
+    chestTrap.*:
+        description: Gives access to all chestTrap commands
+        children:
+            chestTrap.createTrap: true
+            chestTrap.removeTrap: true
+            chestTrap.reload: true
+    chestTrap.createTrap:
+        description: Allows people to add a trap.
+        default: false
+    chestTrap.removeTrap:
+        description: Allows people to remove a trap.
+        default: false
+    chestTrap.reload:
+        description: Allows users to reload the configuration file
+        default: false
