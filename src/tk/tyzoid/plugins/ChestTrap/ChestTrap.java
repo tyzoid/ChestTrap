@@ -70,7 +70,7 @@ public class ChestTrap extends JavaPlugin {
                 	@SuppressWarnings("unused")
 					Permission fakePerm = new Permission("fake.perm");
                 	useSuperperms = true;
-                	System.out.println("[" + pluginname + "] Superpermis found.");
+                	System.out.println("[" + pluginname + "] Superperms found.");
                 } catch(Exception e){
                 	System.out.println("[" + pluginname + "] Superperms not found. Using defaults.");
                 }
