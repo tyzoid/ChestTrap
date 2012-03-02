@@ -1,3 +1,4 @@
+
 package tk.tyzoid.plugins.ChestTrap.Listeners;
 
 import java.util.regex.Pattern;
@@ -8,16 +9,18 @@ import org.bukkit.entity.CreatureType;
 //import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Wolf;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerListener;
 
 import tk.tyzoid.plugins.ChestTrap.ChestTrap;
 import tk.tyzoid.plugins.ChestTrap.Lib.Coordinate;
 //import tk.tyzoid.plugins.ChestTrap.Lib.MyChest;
 
-public class PListener  extends PlayerListener{
+public class PListener implements Listener {
 	private final ChestTrap plugin;
 	String pluginname;
 	
@@ -27,7 +30,7 @@ public class PListener  extends PlayerListener{
         
         pluginname = plugin.pluginname;
     }
-	
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
 		String[] split = event.getMessage().split(" ");
 		//String mess = event.getMessage();
@@ -97,6 +100,7 @@ public class PListener  extends PlayerListener{
     }
 	
 	@SuppressWarnings("deprecation")
+    @EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteract(PlayerInteractEvent event){
 		Block block = event.getClickedBlock();
 		

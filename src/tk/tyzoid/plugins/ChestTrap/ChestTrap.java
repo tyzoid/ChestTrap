@@ -11,6 +11,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+//TODO: Possible remove dependency of nijiko and use playerInstance.hasPermission(String) ?
 import com.nijiko.permissions.PermissionHandler;
 import com.nijikokun.bukkit.Permissions.Permissions;
 
@@ -29,7 +30,7 @@ public class ChestTrap extends JavaPlugin {
 	public Random randomNumbers = new Random(System.currentTimeMillis());
 	
 	public Settings settings = new Settings(this);
-	
+
 	public PermissionHandler permissionHandler;
     public boolean permissionsExists = false;
     public boolean useSuperperms = false;
@@ -43,10 +44,9 @@ public class ChestTrap extends JavaPlugin {
         System.out.println("[" + pluginname + "] Starting " + pluginname + " v" + pdfFile.getVersion() + "...");
         
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvent(Event.Type.PLAYER_INTERACT, playerlistener, Priority.Highest, this);
-        pm.registerEvent(Event.Type.PLAYER_COMMAND_PREPROCESS, playerlistener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.BLOCK_BREAK, blockListener, Priority.Monitor, this);
-        //pm.registerEvent(Event.Type.CREATURE_SPAWN, entityListener, Priority.Monitor, this);
+        pm.registerEvents(playerlistener, this);
+        pm.registerEvents(blockListener, this);
+        //pm.registerEvents(entityListener, this);
         
         
         settings.readSettings();
@@ -70,7 +70,7 @@ public class ChestTrap extends JavaPlugin {
                 	@SuppressWarnings("unused")
 					Permission fakePerm = new Permission("fake.perm");
                 	useSuperperms = true;
-                	System.out.println("[" + pluginname + "] Superpermis found.");
+                	System.out.println("[" + pluginname + "] Superperms found.");
                 } catch(Exception e){
                 	System.out.println("[" + pluginname + "] Superperms not found. Using defaults.");
                 }
